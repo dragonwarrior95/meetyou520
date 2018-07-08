@@ -7,11 +7,12 @@ use Yii;
 /**
  * This is the model class for table "tool_info".
  *
+ * @property int $id
  * @property string $name 名称
  * @property string $icon 图标
  * @property string $description 描述
  * @property string $url 链接
- * @property int $type 0 默认 1开发类 2：其他
+ * @property int $type 类别
  * @property string $note 备注
  */
 class Info extends \yii\db\ActiveRecord
@@ -42,11 +43,12 @@ class Info extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'id' => 'ID',
             'name' => '名称',
             'icon' => '图标',
             'description' => '描述',
             'url' => '链接',
-            'type' => '0 默认 1开发类 2：其他',
+            'type' => '类别',
             'note' => '备注',
         ];
     }

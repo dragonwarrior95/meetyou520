@@ -2,9 +2,11 @@
 
 namespace frontend\controllers;
 
+use common\models\Category;
 use Yii;
 use common\models\Info;
 use common\models\search\InfoSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -41,6 +43,23 @@ class InfoController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Lists all Info models.
+     * @return mixed
+     */
+    public function actionIndexAll()
+    {
+        $searchModel = new InfoSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $category = Category::find()->asArray()->all();
+//        $category = ArrayHelper::map($category, 'id', 'name');
+        return $this->render('index-all', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'category' => $category,
         ]);
     }
 
