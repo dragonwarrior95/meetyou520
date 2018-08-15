@@ -46,11 +46,35 @@ $this->title = '美化图片';
     .el-container:nth-child(7) .el-aside {
         line-height: 320px;
     }
+
+    .index-main {
+        height: {{height}};
+    }
 </style>
 
-<div class="index-index">
-    <el-container>
+<div id="index-index">
+    <el-container class="index-main">
         <el-aside width="200px">Aside</el-aside>
         <el-main>Main</el-main>
     </el-container>
+
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#index-index',
+            data: function() {
+                return {
+                    visible: false,
+                    height: 300px;
+                }
+            },
+            created: function() {
+                this.height = 800px;
+            },
+        })
+    </script>
+
 </div>

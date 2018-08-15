@@ -44,6 +44,16 @@ return [
             ],
         ],
         */
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+
+            'suffix' => '.html',  // 伪后缀
+            'rules'=>[
+                'article/<id:\d+>' => 'article/view', // 文章详情
+                'articles/<country_id:\d+>' => 'article/index', // 文章列表
+            ],
+        ],
     ],
     'params' => $params,
 ];
