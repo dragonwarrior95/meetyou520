@@ -14,27 +14,26 @@ $this->title = '美化图片';
 
 <style>
     #index-index {
-        margin-top: 50px;
+        padding: 10px 10px 10px 290px;
+        background-color: darkseagreen;
     }
     .el-aside {
-        position: absolute;
-        top: 0;
-        bottom: 0;
+        position: fixed;
+        top: 50px;
+        left: 0px;
+        height: 100%;
+        padding: 0px 0 0px 0;
         background-color: #273238;
-        z-index: 9999;
+        border-right: solid 1px #e6e6e6;
     }
 
     .el-main {
         background-color: #E9EEF3;
         color: #333;
         text-align: center;
-        min-height: 400px;
+        min-height: 700px;
         height: auto;
-    }
-
-    .home {
-        height: 50px;
-        /*border-bottom: 1px solid red;*/
+        padding: 0;
     }
 </style>
 
@@ -43,8 +42,7 @@ $this->title = '美化图片';
         <!--左侧菜单-->
         <el-aside width="280px">
             <el-col>
-                <div class="home"><span>自定义颜色</span></div>
-                <el-menu
+                <el-menu style="border: none;"
                         default-active="2"
                         class="el-menu-vertical-demo"
                         @open="handleOpen"
@@ -82,6 +80,64 @@ $this->title = '美化图片';
                         <i class="el-icon-setting"></i>
                         <span slot="title">导航四</span>
                     </el-menu-item>
+                    <el-submenu index="6">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>导航六</span>
+                        </template>
+                        <el-menu-item index="6-1">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航六</span>
+                        </el-menu-item>
+                        <el-menu-item index="6-2">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航7</span>
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="5">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>导航五</span>
+                        </template>
+                        <el-menu-item index="5-1">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航六</span>
+                        </el-menu-item>
+                        <el-menu-item index="5-2">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航5</span>
+                        </el-menu-item>
+                        <el-menu-item index="5-3">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航5</span>
+                        </el-menu-item>
+                        <el-menu-item index="5-4">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航5</span>
+                        </el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="7">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>导航五</span>
+                        </template>
+                        <el-menu-item index="7-1">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航六</span>
+                        </el-menu-item>
+                        <el-menu-item index="7-2">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航5</span>
+                        </el-menu-item>
+                        <el-menu-item index="7-3">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航5</span>
+                        </el-menu-item>
+                        <el-menu-item index="7-4">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">导航5</span>
+                        </el-menu-item>
+                    </el-submenu>
                 </el-menu>
             </el-col>
         </el-aside>

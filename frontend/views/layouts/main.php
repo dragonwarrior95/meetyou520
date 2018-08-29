@@ -22,23 +22,6 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <style>
-        .container {
-            margin: 0;
-            padding: 0 20px 0 300px;
-            width: 100%;
-            min-width: 500px;
-            /*border: 1px solid red;*/
-        }
-        .wrap > .container {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-            height: auto;
-            /*border: 1px solid red;*/
-        }
-    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
