@@ -25,9 +25,18 @@ AppAsset::register($this);
     <style>
         .container {
             margin: 0;
+            padding: 0 20px 0 300px;
+            width: 100%;
+            min-width: 500px;
+            /*border: 1px solid red;*/
+        }
+        .wrap > .container {
+            margin: 0;
             padding: 0;
             width: 100%;
-            border: 1px solid red;
+            min-height: 100%;
+            height: auto;
+            /*border: 1px solid red;*/
         }
     </style>
 </head>
@@ -44,13 +53,14 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-//        ['label' => 'Home', 'url' => ['/site/index']],
-//        ['label' => 'About', 'url' => ['/site/about']],
-//        ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => '首页', 'url' => ['/site/index']],
+        ['label' => '个人中心', 'url' => ['/index/index']],
+        ['label' => '关于', 'url' => ['/site/about']],
+        ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => '登录', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => '开发注册', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
