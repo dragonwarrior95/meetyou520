@@ -17,14 +17,23 @@ $this->title = '美化图片';
         padding: 10px 10px 10px 290px;
         background-color: darkseagreen;
     }
-    .el-aside {
+
+    .nav-collapse #index-index {
+        padding: 10px 10px 10px 70px;
+        background-color: darkseagreen;
+    }
+    .nav-left {
         position: fixed;
         top: 50px;
         left: 0px;
         height: 100%;
+        width: 280px;
         padding: 0px 0 0px 0;
         background-color: #273238;
         border-right: solid 1px #e6e6e6;
+    }
+    .nav-collapse .nav-left {
+        width: 60px;
     }
 
     .el-main {
@@ -40,8 +49,9 @@ $this->title = '美化图片';
 <div id="index-index">
     <el-container class="index-main">
         <!--左侧菜单-->
-        <el-aside width="280px">
-            <el-col>
+<!--        <el-aside style="width: 100%;">-->
+<!--            <el-col>-->
+        <div class="nav-left">
                 <el-menu style="border: none;"
                         default-active="2"
                         class="el-menu-vertical-demo"
@@ -139,8 +149,9 @@ $this->title = '美化图片';
                         </el-menu-item>
                     </el-submenu>
                 </el-menu>
-            </el-col>
-        </el-aside>
+        </div>
+<!--            </el-col>-->
+<!--        </el-aside>-->
         <!--中间内容-->
         <el-main>
         </el-main>

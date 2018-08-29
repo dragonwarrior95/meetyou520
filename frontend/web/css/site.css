@@ -43,6 +43,18 @@ body {
     left: 280px;
 }
 
+/*收起左边栏菜单*/
+.nav-collapse .footer{
+    left: 60px;
+}
+
+.navbar-header {
+    width: 265px;
+}
+.nav-collapse .navbar-header {
+    width: 45px;
+}
+
 .jumbotron {
     text-align: center;
     background-color: transparent;

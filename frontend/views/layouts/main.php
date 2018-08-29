@@ -26,6 +26,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<div class="main-container /*nav-collapse*/">
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -58,6 +59,7 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+
     NavBar::end();
     ?>
 
@@ -77,6 +79,7 @@ AppAsset::register($this);
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
+</div>
 
 <?php $this->endBody() ?>
 </body>
