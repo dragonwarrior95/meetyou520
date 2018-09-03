@@ -5,13 +5,6 @@
 $this->title = '美化图片';
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-
-<!-- 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
 <style>
     #index-index {
         padding: 10px 10px 10px 290px;
@@ -219,6 +212,7 @@ $this->title = '美化图片';
             }
         },
         created: function() {
+            $(".main-container").removeClass("nav-hide");
             this.canvas = $("canvas");
             // this.canvasWidth = this.innerWidth() + 'px';
             // this.canvasHeight = this.innerHeight() + 'px';

@@ -48,6 +48,11 @@ body {
     left: 60px;
 }
 
+/*隐藏左边导航栏*/
+.nav-hide > .footer{
+    left: 0px;
+}
+
 .navbar-header {
     width: 265px;
 }

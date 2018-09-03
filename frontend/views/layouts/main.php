@@ -22,9 +22,16 @@ AppAsset::register($this);
 
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入组件库 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
     <script src="/js/webgl/jquery-3.2.1.js"></script>
+
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -33,7 +40,7 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="main-container /*nav-collapse*/">
+<div class="main-container /*nav-collapse nav-hide*/">
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -46,6 +53,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => '首页', 'url' => ['/site/index']],
         ['label' => '个人中心', 'url' => ['/index/index']],
+        ['label' => '媒体影音', 'url' => ['/media/index']],
         ['label' => '关于', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
