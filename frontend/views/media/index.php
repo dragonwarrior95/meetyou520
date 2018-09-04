@@ -23,17 +23,32 @@ $this->title = '美化图片';
 
 <div id="media-index">
     <div class="search">
-        <el-row class="demo-autocomplete">
-            <el-col :span="24">
-                <el-autocomplete
-                        class="inline-input"
-                        v-model="video_url"
-                        :fetch-suggestions="querySearch"
-                        placeholder="请输入内容"
-                        @select="handleSelect"
-                ></el-autocomplete>
-            </el-col>
-        </el-row>
+        <span>
+            <el-autocomplete style="width: 500px; "
+                    class="inline-input"
+                    v-model="video_url"
+                    :fetch-suggestions="querySearch"
+                    placeholder="请输入内容"
+                    @select="handleSelect"
+            ></el-autocomplete>
+        </span>
+        <span>
+            <el-select v-model="value" placeholder="请选择">
+                <el-option
+                        v-for="item in api"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                </el-option>
+            </el-select>
+        </span>
+        <span>
+            <el-button type="primary" v-on:click="onPlay()">解析播放</el-button>
+        </span>
+    </div>
+    <div>
+        <h1 class="caption">title</h1>
+        <video class="video" style="width: 100%; height=768; border: 1px solid red;"></video>
     </div>
 </div>
 
@@ -44,13 +59,107 @@ $this->title = '美化图片';
         data: function() {
             return {
                 restaurants: [],
-                video_url: '',
+                api: [{
+                    label: '默认一',
+                    value: 'http://api.baiyug.cn/vip/index.php?url='
+                }, {
+                    label: '线路二',
+                    value: 'http://api.47ks.com/webcloud/?v='
+                }, {
+                    label: '线路三',
+                    value: 'http://api.lilaile.cn/index.php?url='
+                }, {
+                    label: '线路四',
+                    value: 'http://jiexi.071811.cc/jx2.php?url='
+                }, {
+                    label: '线路五',
+                    value: 'http://api.xfsub.com/index.php?url='
+                }, {
+                    label: '线路六',
+                    value: 'http://api.baiyug.cn/vip/?url='
+                }, {
+                    label: '磁力一',
+                    value: 'https://apiv.ga/magnet/'
+                }, {
+                    label: '磁力二',
+                    value: 'http://api.kltvv.top/api/ap.php?u='
+                }, {
+                    label: '测试一',
+                    value: 'http://api.662820.com/xnflv/index.php?url='
+                }, {
+                    label: '测试二',
+                    value: 'yun.baiyug.cn/vip/index.php?url='// http://yun.baiyug.cn/
+                }],
+                video_url: 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58',// 视频链接
+                value: '',
+                title: ''
             }
         },
         created: function() {
             $(".main-container").addClass("nav-hide");
+            this.value = 'http://api.baiyug.cn/vip/index.php?url=';
         },
         methods: {
+            onPlay() {
+                if (this.video_url == "") {
+                    alert('请输入链接！！！');
+                }
+                else {
+                    var self = this;
+                    var target_url = this.value + this.video_url;
+                    $(".video").src = target_url;
+                    console.log("==================");
+
+                    $(".video").src = target_url; //接口赋值
+
+                    $.ajax({
+                        type: 'post',
+                        dataType: 'json',
+                        url: 'data/title.php',
+                        data: {
+                            titurl: target_url
+                        },
+                        success: function(res){
+                            console.log(res.readyState)
+                            console.log(res.status)
+                            if(res.readyState == 4 && res.status == 200) {
+                                self.title = res.responseText; //获取服务器响应数据
+                            }
+                        },
+                        error: function (res) {
+                            console.log("error===========");
+                            self.title = res.responseText;
+                        }
+                    })
+
+                    // //1,create ajax核心对象：
+                    // var xhr = getxhr();
+                    // //2,以post的方式与服务器建立连接；
+                    // xhr.open("post", "data/title.php", true);
+                    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    // //3,发送一个http请求:
+                    // xhr.send("titurl=" + url);
+                    // console.log(xhr.readyState);
+                    // //获取服务器状态码
+                    // xhr.onreadystatechange = function() {
+                    //     console.log(xhr.readyState)
+                    //     console.log(xhr.status)
+                    //     if(xhr.readyState == 4 && xhr.status == 200) {
+                    //         self.title = xhr.responseText; //获取服务器响应数据
+                    //     }
+                    // }
+                    //
+                    // function getxhr() {
+                    //     var xhr = null;
+                    //     if(window.XMLHttpRequest) {
+                    //         xhr = new XMLHttpRequest();
+                    //     } else {
+                    //         xhr = new ActiveXObject("Microsoft.XMLHttp");
+                    //     }
+                    //     return xhr;
+                    // }
+                }
+            },
             querySearch(queryString, cb) {
                 var restaurants = this.restaurants;
                 var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
@@ -64,17 +173,6 @@ $this->title = '美化图片';
             },
             loadAll() {
                 return [
-                    { "value": "三全鲜食（北新泾店）", "address": "长宁区新渔路144号" },
-                    { "value": "Hot honey 首尔炸鸡（仙霞路）", "address": "上海市长宁区淞虹路661号" },
-                    { "value": "新旺角茶餐厅", "address": "上海市普陀区真北路988号创邑金沙谷6号楼113" },
-                    { "value": "泷千家(天山西路店)", "address": "天山西路438号" },
-                    { "value": "胖仙女纸杯蛋糕（上海凌空店）", "address": "上海市长宁区金钟路968号1幢18号楼一层商铺18-101" },
-                    { "value": "贡茶", "address": "上海市长宁区金钟路633号" },
-                    { "value": "豪大大香鸡排超级奶爸", "address": "上海市嘉定区曹安公路曹安路1685号" },
-                    { "value": "茶芝兰（奶茶，手抓饼）", "address": "上海市普陀区同普路1435号" },
-                    { "value": "十二泷町", "address": "上海市北翟路1444弄81号B幢-107" },
-                    { "value": "星移浓缩咖啡", "address": "上海市嘉定区新郁路817号" },
-                    { "value": "阿姨奶茶/豪大大", "address": "嘉定区曹安路1611号" },
                 ];
             },
             handleSelect(item) {
