@@ -8,7 +8,7 @@ $this->title = '美化图片';
 <style>
     #index-index {
         padding: 10px 10px 10px 290px;
-        background-color: darkseagreen;
+        background-color: darkolivegreen;
         position: fixed;
         left: 0px;
         top: 50px;
@@ -33,6 +33,9 @@ $this->title = '美化图片';
     .nav-collapse .nav-left {
         width: 60px;
     }
+    .LeftPanel {
+        padding: 20px;
+    }
 
     /*.el-main {*/
         /*background-color: #E9EEF3;*/
@@ -41,6 +44,7 @@ $this->title = '美化图片';
         /*min-height: 700px;*/
         /*height: auto;*/
         /*padding: 0;*/
+        /*margin: auto;*/
     /*}*/
 </style>
 
@@ -51,6 +55,19 @@ $this->title = '美化图片';
 <!--        <el-aside style="width: 100%;">-->
 <!--            <el-col>-->
         <div class="nav-left">
+            <div class="LeftPanel">
+                <p><input type="file" id="browsefile" onchange="onEditChange(this)"></p>
+                <p><input type="button" id="filebutton" value="打开图片" onclick="browsefile.click()"></p>
+                <p><input type="textfield" id="filepath"></p>
+
+                <p><label>半径：</label><input id="PointSize" type="range" min="0" max="255" value="5" oninput="onChange(value)" onchange="onChange(value)"></p>
+                <p><label>Red：</label><input id="red" type="range" min="0" max="255" value="255" oninput="onRValue(value)" onchange="onRValue(value)"></p>
+                <p><label>Green：</label><input id="green" type="range" min="0" max="255" value="0" oninput="onGValue(value)" onchange="onGValue(value)"></p>
+                <p><label>Blue：</label><input id="blue" type="range" min="0" max="255" value="0" oninput="onBValue(value)" onchange="onBValue(value)"></p>
+                <p><label>Alpha：</label><input id="alpha" type="range" min="0" max="255" value="255" oninput="onAValue(value)" onchange="onAValue(value)"></p>
+                <p><label>放大：</label><input id="scale" type="range" min="10" max="400" value="100" oninput="onScaleValue(value)" onchange="onScaleValue(value)"></p>
+                <p><label>旋转：</label><input id="rotate" type="range" min="0" max="360" value="0" oninput="onRotateValue(value)" onchange="onRotateValue(value)"></p>
+            </div>
 <!--            <el-menu style="border: none;"-->
 <!--                        default-active="2"-->
 <!--                        class="el-menu-vertical-demo"-->
@@ -206,6 +223,7 @@ $this->title = '美化图片';
                 canvasHeight: '768px',
 
                 canvas: $("#canvas"),
+                webGL: null,
                 filterBase: null,
                 bLButtonDown: false,
                 glTexture: 0,
@@ -214,22 +232,24 @@ $this->title = '美化图片';
         created: function() {
             $(".main-container").removeClass("nav-hide");
             this.canvas = $("canvas");
+            this.webGL = getWebGLContext(this.canvas, true);
             // this.canvasWidth = this.innerWidth() + 'px';
             // this.canvasHeight = this.innerHeight() + 'px';
-
-            this.filterBase = new JFilterBase(getWebGLContext(this.canvas, true));
+            if (this.webGL == null) {
+                return;
+            }
+            this.filterBase = new JFilterBase(this.webGL);
             this.filterBase.initlize();
             this.filterBase.setFrameSize(this.canvas.clientWidth, this.canvas.clientHeight);
-            var gl = this.filterBase.getWebGL();
-            // this.canvas.onmousedown = function (ev) { this.onMouseDown(ev, gl, this.canvas);};
-            // this.canvas.onmouseup = function (ev) { this.onMouseUp(ev, gl, this.canvas);};
-            // this.canvas.onmousemove = function (ev) { this.onMouseMove(ev, gl, this.canvas);};
-            //
-            // this.canvas.addEventListener("touchstart", function (ev) { this.onTouchStart(ev, gl, this.canvas);});
-            // this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, gl, this.canvas);});
-            // this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, gl, this.canvas);});
+            this.canvas.onmousedown = function (ev) { this.onMouseDown(ev, this.webGL, this.canvas);};
+            this.canvas.onmouseup = function (ev) { this.onMouseUp(ev, this.webGL, this.canvas);};
+            this.canvas.onmousemove = function (ev) { this.onMouseMove(ev, this.webGL, this.canvas);};
 
-            this.onLoadImage("/image/37.jpg");
+            this.canvas.addEventListener("touchstart", function (ev) { this.onTouchStart(ev, this.webGL, this.canvas);});
+            this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
+            this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
+
+            this.onLoadImage("/1.jpg");
         },
         methods: {
             handleOpen(key, keyPath) {
@@ -242,14 +262,45 @@ $this->title = '美化图片';
                 return typeof id == "string" ? document.getElementById(id) : id;
             },
 
+
+            // 获取图片完整地址打开图片
+            onEditChange(input) {
+                var imgURL = "";
+                try{
+                    var file = null;
+                    if(input.files && input.files[0] ){
+                        file = input.files[0];
+                    }else if(input.files && input.files.item(0)) {
+                        file = input.files.item(0);
+                    }
+                    //Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径
+                    try{
+                        imgURL =  file.getAsDataURL();
+                    }catch(e){
+                        imgURL = window.URL.createObjectURL(file);
+                    }
+                }catch(e){
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            imgURL = e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+
+                if (imgURL != "") {
+                    this.onLoadImage(imgURL);
+                }
+            },
             onLoadImage(fileName) {
                 var image = new Image();
-                _this = this;
+                var self = this;
                 image.onload = function () {
                     // setAutoShow(gl, image.width, image.height);// 图片加载为设置自适应
                     print("Image(" + image.width +", " + image.height+")");
-                    _this.glTexture = _this.filterBase.loadTexture(image);
-                    _this.filterBase.draw();
+                    self.glTexture = self.filterBase.loadTexture(image);
+                    self.filterBase.draw();
                 };
                 image.src = fileName;
             },
