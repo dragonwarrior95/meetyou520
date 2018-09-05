@@ -9,27 +9,34 @@ $this->title = '美化图片';
 
 <style>
     #media-index {
-        margin: auto 200px;
+        margin: 0 200px;
         background-color: darkseagreen;
-        min-height: 768px;
+        min-height: 748px;
         height: 100%;
+        top: 0;
     }
     .search {
-        margin-top: 30px;
+        /*margin-top: 10px;*/
         text-align: center;
     }
 </style>
 
 
 <div id="media-index">
+    <div>
+        <h3 class="caption" style="margin-bottom: 0; border: 1px solid red;">{{title}}</h3>
+<!--        <video class="video" style="width: 100%; border: 1px solid red;"></video>-->
+        <iframe id="video" style="width: 100%; border: 1px solid red;" v-bind:src="target_url" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen="true" allowtransparency="true"></iframe>
+
+    </div>
     <div class="search">
         <span>
             <el-autocomplete style="width: 500px; "
-                    class="inline-input"
-                    v-model="video_url"
-                    :fetch-suggestions="querySearch"
-                    placeholder="请输入内容"
-                    @select="handleSelect"
+                             class="inline-input"
+                             v-model="video_url"
+                             :fetch-suggestions="querySearch"
+                             placeholder="请输入内容"
+                             @select="handleSelect"
             ></el-autocomplete>
         </span>
         <span>
@@ -45,10 +52,6 @@ $this->title = '美化图片';
         <span>
             <el-button type="primary" v-on:click="onPlay()">解析播放</el-button>
         </span>
-    </div>
-    <div>
-        <h1 class="caption">title</h1>
-        <video class="video" style="width: 100%; height=768; border: 1px solid red;"></video>
     </div>
 </div>
 
@@ -91,6 +94,7 @@ $this->title = '美化图片';
                     value: 'yun.baiyug.cn/vip/index.php?url='// http://yun.baiyug.cn/
                 }],
                 video_url: 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58',// 视频链接
+                target_url: '',
                 value: '',
                 title: ''
             }
@@ -106,18 +110,16 @@ $this->title = '美化图片';
                 }
                 else {
                     var self = this;
-                    var target_url = this.value + this.video_url;
-                    $(".video").src = target_url;
+                    this.target_url = this.value + this.video_url;
+                    $("video").src = this.target_url;
                     console.log("==================");
-
-                    $(".video").src = target_url; //接口赋值
 
                     $.ajax({
                         type: 'post',
                         dataType: 'json',
                         url: '../api/ajax/index.html',
                         data: {
-                            video_url: self.video_url
+                            titurl: self.video_url
                         },
                         success: function(res){
                             console.log(res.readyState)
@@ -138,7 +140,7 @@ $this->title = '美化图片';
                     // xhr.open("post", "../api/ajax/index.html", true);
                     // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     // //3,发送一个http请求:
-                    // xhr.send("video_url=" + self.video_url);
+                    // xhr.send("titurl=" + self.video_url);
                     // console.log(xhr.readyState);
                     // //获取服务器状态码
                     // xhr.onreadystatechange = function() {

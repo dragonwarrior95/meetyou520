@@ -15,11 +15,10 @@ class AjaxController extends Controller
 {
     public function actionIndex()
     {
-        echo 'curl/index======================='."\n";
-        $url=$_POST['video_url'];
+        $url=$_POST['titurl'];
         echo 'url: ' .$url;
 //        $url = 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58';
-        $this->getTitle($url);
+//        $this->getTitle($url);
         //$url = 'http://www.beipy.com/';//url链接地址
         echo $this->getTitle($url);
 //        return $this->render('index');
