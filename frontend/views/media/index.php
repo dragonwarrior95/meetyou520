@@ -115,9 +115,9 @@ $this->title = '美化图片';
                     $.ajax({
                         type: 'post',
                         dataType: 'json',
-                        url: 'api/curl/index.php',
+                        url: '../api/ajax/index.html',
                         data: {
-                            titurl: self.video_url
+                            video_url: self.video_url
                         },
                         success: function(res){
                             console.log(res.readyState)
@@ -132,13 +132,13 @@ $this->title = '美化图片';
                         }
                     })
 
-                    // //1,create ajax核心对象：
+                    // 1,create ajax核心对象：
                     // var xhr = getxhr();
                     // //2,以post的方式与服务器建立连接；
-                    // xhr.open("post", "data/title.php", true);
+                    // xhr.open("post", "../api/ajax/index.html", true);
                     // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                     // //3,发送一个http请求:
-                    // xhr.send("titurl=" + self.video_url);
+                    // xhr.send("video_url=" + self.video_url);
                     // console.log(xhr.readyState);
                     // //获取服务器状态码
                     // xhr.onreadystatechange = function() {

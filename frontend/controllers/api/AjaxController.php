@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: dragon
- * Date: 2018/9/4
- * Time: 22:44
+ * Date: 2018/7/8
+ * Time: 14:37
  */
 
 namespace frontend\controllers\api;
@@ -11,20 +11,23 @@ namespace frontend\controllers\api;
 use yii\web\Controller;
 
 
-class CURLController extends Controller
+class AjaxController extends Controller
 {
     public function actionIndex()
     {
-        $url=$_POST['titurl'];
+        echo 'curl/index======================='."\n";
+        $url=$_POST['video_url'];
+        echo 'url: ' .$url;
+//        $url = 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58';
         $this->getTitle($url);
         //$url = 'http://www.beipy.com/';//url链接地址
-        echo getTitle($url);
+        echo $this->getTitle($url);
 //        return $this->render('index');
     }
 
     public function getTitle($url){
         $header = array('user-agent:'.$_SERVER['HTTP_USER_AGENT']);
-        $data = curl_https($url);
+        $data = $this->curl_https($url);
         preg_match('/<title>(.*)<\/title>/', $data, $matches);
         return $matches[1];
     }
