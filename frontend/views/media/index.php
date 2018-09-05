@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = '美化图片';
+$this->title = '媒体影音';
 ?>
 
 
@@ -37,6 +37,7 @@ $this->title = '美化图片';
     <div class="search">
         <span>
             <el-autocomplete style="width: 500px; "
+                             clearable
                              class="inline-input"
                              v-model="video_url"
                              :fetch-suggestions="querySearch"
@@ -98,7 +99,7 @@ $this->title = '美化图片';
                     label: '测试二',
                     value: 'yun.baiyug.cn/vip/index.php?url='// http://yun.baiyug.cn/
                 }],
-                video_url: 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58',// 视频链接
+                video_url: '',// 视频链接
                 target_url: '',
                 value: '',
                 title: ''
@@ -107,6 +108,7 @@ $this->title = '美化图片';
         created: function() {
             $(".main-container").addClass("nav-hide");
             this.value = 'http://api.baiyug.cn/vip/index.php?url=';
+            this.video_url = 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58';
         },
         methods: {
             onPlay() {
@@ -124,7 +126,7 @@ $this->title = '美化图片';
                         dataType: 'json',
                         url: '../api/ajax/index.html',
                         data: {
-                            titurl: self.video_url
+                            video_url: self.video_url
                         },
                         success: function(res){
                             console.log(res.readyState)
@@ -133,38 +135,24 @@ $this->title = '美化图片';
                                 self.title = res.responseText; //获取服务器响应数据
                             }
                         },
+                        onreadystatechange: function(res) {
+                            console.log(res.readyState)
+                            console.log(res.status)
+                            if(res.readyState == 4 && res.status == 200) {
+                                self.title = res.responseText; //获取服务器响应数据
+                            }
+                        },
                         error: function (res) {
                             console.log("error===========");
-                            self.title = res.responseText;
+                            console.log(res.readyState)
+                            console.log(res.status)
+                            if(res.readyState == 4 && res.status == 200) {
+                                self.title = res.responseText; //获取服务器响应数据
+                                $("title").html(self.title);
+                                self.restaurants.push( { 'value': self.video_url } );
+                            }
                         }
                     })
-
-                    // 1,create ajax核心对象：
-                    // var xhr = getxhr();
-                    // //2,以post的方式与服务器建立连接；
-                    // xhr.open("post", "../api/ajax/index.html", true);
-                    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    // //3,发送一个http请求:
-                    // xhr.send("titurl=" + self.video_url);
-                    // console.log(xhr.readyState);
-                    // //获取服务器状态码
-                    // xhr.onreadystatechange = function() {
-                    //     console.log(xhr.readyState)
-                    //     console.log(xhr.status)
-                    //     if(xhr.readyState == 4 && xhr.status == 200) {
-                    //         self.title = xhr.responseText; //获取服务器响应数据
-                    //     }
-                    // }
-                    //
-                    // function getxhr() {
-                    //     var xhr = null;
-                    //     if(window.XMLHttpRequest) {
-                    //         xhr = new XMLHttpRequest();
-                    //     } else {
-                    //         xhr = new ActiveXObject("Microsoft.XMLHttp");
-                    //     }
-                    //     return xhr;
-                    // }
                 }
             },
             querySearch(queryString, cb) {
@@ -187,7 +175,7 @@ $this->title = '美化图片';
             }
         },
         mounted() {
-            this.restaurants = this.loadAll();
+            // this.restaurants = this.loadAll();
         }
     });
 </script>
