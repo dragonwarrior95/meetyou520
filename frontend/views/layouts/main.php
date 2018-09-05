@@ -51,10 +51,10 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => '首页', 'url' => ['/site/index']],
+        ['label' => '首页',     'url' => ['/site/index']],
         ['label' => '个人中心', 'url' => ['/index/index']],
         ['label' => '媒体影音', 'url' => ['/media/index']],
-        ['label' => '关于', 'url' => ['/site/about']],
+        ['label' => '关于',     'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
