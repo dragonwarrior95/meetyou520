@@ -19,6 +19,11 @@ $this->title = '美化图片';
         /*margin-top: 10px;*/
         text-align: center;
     }
+    #video {
+        width: 100%;
+        height: 100%;
+        min-height: 768px;
+    }
 </style>
 
 
@@ -26,7 +31,7 @@ $this->title = '美化图片';
     <div>
         <h3 class="caption" style="margin-bottom: 0; border: 1px solid red;">{{title}}</h3>
 <!--        <video class="video" style="width: 100%; border: 1px solid red;"></video>-->
-        <iframe id="video" style="width: 100%; border: 1px solid red;" v-bind:src="target_url" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen="true" allowtransparency="true"></iframe>
+        <iframe id="video" v-bind:src="target_url" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen="true" allowtransparency="true"></iframe>
 
     </div>
     <div class="search">
