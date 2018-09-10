@@ -56,7 +56,7 @@ $this->title = '美化图片';
 <!--            <el-col>-->
         <div class="nav-left">
             <div class="LeftPanel">
-                <p><input type="file" id="browsefile" onchange="onEditChange(this)"></p>
+                <p><input type="file" id="browsefile" style="display: none;" v-on:onchange="onEditChange(this)"></p>
                 <p><input type="button" id="filebutton" value="打开图片" onclick="browsefile.click()"></p>
                 <p><input type="textfield" id="filepath"></p>
 
@@ -68,6 +68,8 @@ $this->title = '美化图片';
                 <p><label>放大：</label><input id="scale" type="range" min="10" max="400" value="100" oninput="onScaleValue(value)" onchange="onScaleValue(value)"></p>
                 <p><label>旋转：</label><input id="rotate" type="range" min="0" max="360" value="0" oninput="onRotateValue(value)" onchange="onRotateValue(value)"></p>
             </div>
+        </div>
+        <div class="nav-left1">
 <!--            <el-menu style="border: none;"-->
 <!--                        default-active="2"-->
 <!--                        class="el-menu-vertical-demo"-->
@@ -177,16 +179,17 @@ $this->title = '美化图片';
 </div>
 
 
+
+
 <script src="/js/webgl/webgl-debug.js"></script>
 <script src="/js/webgl/webgl-utils.js"></script>
 <script src="/js/webgl/cuon-utils.js"></script>
 <script src="/js/webgl/cuon-matrix.js"></script><!--矩阵变换库-->
 <script src="/js/webgl/jquery-3.2.1.js"></script>
-
 <!--<script src="/js/WebGL.js"></script>-->
 <!--<script src="/js/WebGLTransfor.js"></script>-->
 <!--<script src="/js/WebGLColor.js"></script>-->
-<script src="/js/WebGLImage.js"></script>
+<!--<script src="/js/WebGLImage.js"></script>-->
 <!--<script src="/js/webgl/FilterBase.js"></script>-->
 <script src="/js/webgl/JFilterBase.js"></script>
 <!--<script src="/js/test.js"></script>-->
@@ -222,7 +225,7 @@ $this->title = '美化图片';
                 canvasWidth: '1024',
                 canvasHeight: '768px',
 
-                canvas: $("#canvas"),
+                canvas: $("#canvas")[0],
                 webGL: null,
                 filterBase: null,
                 bLButtonDown: false,
@@ -230,8 +233,9 @@ $this->title = '美化图片';
             }
         },
         created: function() {
-            $(".main-container").removeClass("nav-hide");
-            this.canvas = $("canvas");
+            if ($(".main-container").hasClass("nav-hide"))
+                $(".main-container").removeClass("nav-hide");
+            this.canvas = $("#canvas")[0];// document.getElementById("canvas");
             this.webGL = getWebGLContext(this.canvas, true);
             // this.canvasWidth = this.innerWidth() + 'px';
             // this.canvasHeight = this.innerHeight() + 'px';
@@ -249,7 +253,7 @@ $this->title = '美化图片';
             this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
             this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
 
-            this.onLoadImage("/1.jpg");
+            this.onLoadImage("/512.jpg");
         },
         methods: {
             handleOpen(key, keyPath) {
@@ -258,9 +262,9 @@ $this->title = '美化图片';
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             },
-            $(id) {
-                return typeof id == "string" ? document.getElementById(id) : id;
-            },
+            // $(id) {
+            //     return typeof id == "string" ? document.getElementById(id) : id;
+            // },
 
 
             // 获取图片完整地址打开图片
@@ -298,7 +302,6 @@ $this->title = '美化图片';
                 var self = this;
                 image.onload = function () {
                     // setAutoShow(gl, image.width, image.height);// 图片加载为设置自适应
-                    print("Image(" + image.width +", " + image.height+")");
                     self.glTexture = self.filterBase.loadTexture(image);
                     self.filterBase.draw();
                 };

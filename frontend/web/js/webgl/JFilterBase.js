@@ -53,7 +53,7 @@ class JFilterBase {
     initlize() {
         this.getShader();
         if (!initShaders(this.m_webGL, this.m_vshader, this.m_fshader)) {
-            print("[JFilterBase][constructor] init shaders error......");
+            this.print("[JFilterBase][constructor] init shaders error......");
             return;
         }
         this.a_PositionHandle = this.m_webGL.getAttribLocation(this.m_webGL.program, "a_Position");
@@ -66,7 +66,7 @@ class JFilterBase {
         if (this.m_webGL.program)
             this.m_webGL.useProgram(this.m_webGL.program);
         else
-            print("m_webGL.program is null......");
+            console.log("m_webGL.program is null......");
     }
 
     release() {
@@ -80,7 +80,7 @@ class JFilterBase {
         }
         this.m_vertexBuffer = this.m_webGL.createBuffer();
         if (!this.m_vertexBuffer) {
-            print("create Buffer failure......");
+            console.log("create Buffer failure......");
             return -1;
         }
         // 将缓冲区对象绑定到目标
@@ -109,7 +109,7 @@ class JFilterBase {
         }
         this.m_vertexBuffer = this.m_webGL.createBuffer();
         if (!this.m_vertexBuffer) {
-            print("create Buffer failure......");
+            console.log("create Buffer failure......");
             return -1;
         }
         // 将缓冲区对象绑定到目标
@@ -290,7 +290,7 @@ class JFilterBase {
             this.m_FrameBufferObj = this.m_webGL.createFramebuffer();
             if(this.m_FrameBufferObj == 0)
             {
-                print("this.m_FrameBufferObj == 0");
+                console.log("this.m_FrameBufferObj == 0");
                 return false;
             }
         }
@@ -323,7 +323,7 @@ class JFilterBase {
         // 7、校验是否正确配置
         var e = this.m_webGL.checkFramebufferStatus(this.m_webGL.FRAMEBUFFER);
         if (e != this.m_webGL.FRAMEBUFFER_COMPLETE) {
-            print('Framebuffer object is incomplete: ' + e.toString());
+            console.log('Framebuffer object is incomplete: ' + e.toString());
             return error();
         }
     }
@@ -336,7 +336,7 @@ class JFilterBase {
     {
         if (this.bindFBO() == false)
         {
-            print("bin fbo fail");
+            this.print("bin fbo fail");
             return 0;
         }
 
@@ -465,7 +465,7 @@ class JFilterBase {
 
             this.setUniformMatrix4fv("u_ModelMatrix", false, Projection.multiply(TRSMat).elements);// 设置u_ModelMatrix变量
             this.setVertexBuffers(vertexs, texcoords);
-
+            let error = this.m_webGL.getError();
             this.m_webGL.drawArrays(this.m_webGL.TRIANGLE_STRIP, 0, 4);
         }
     }
@@ -596,7 +596,7 @@ class JFilterBase {
             }
             vertexBuffer = this.m_webGL.createBuffer();
             if (!vertexBuffer) {
-                print("create Buffer failure......");
+                this.print("create Buffer failure......");
                 return -1;
             }
             // 将缓冲区对象绑定到目标
