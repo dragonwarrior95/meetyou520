@@ -56,8 +56,8 @@ $this->title = '美化图片';
 <!--            <el-col>-->
         <div class="nav-left">
             <div class="LeftPanel">
-                <p><input type="file" id="browsefile" style="display: none;" v-on:onchange="onEditChange(this)"></p>
-                <p><input type="button" id="filebutton" value="打开图片" onclick="browsefile.click()"></p>
+                <p><input type="file" id="browsefile" style="display: none;" v-on:change="onEditChange(this)"></p>
+                <p><input type="button" id="filebutton" value="打开图片" v-on:click='onBtnOpen()'></p>
                 <p><input type="textfield" id="filepath"></p>
 
                 <p><label>半径：</label><input id="PointSize" type="range" min="0" max="255" value="5" oninput="onChange(value)" onchange="onChange(value)"></p>
@@ -267,8 +267,12 @@ $this->title = '美化图片';
             // },
 
 
+            onBtnOpen() {
+                $("#browsefile").click();
+            },
             // 获取图片完整地址打开图片
             onEditChange(input) {
+                input = $("#browsefile")[0];
                 var imgURL = "";
                 try{
                     var file = null;
