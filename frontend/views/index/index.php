@@ -172,6 +172,7 @@ $this->title = '美化图片';
 <!--        </el-aside>-->
         <!--中间内容-->
         <el-main>
+            <div id="console" style="height: 60px; border: 1px solid red; background-color: ghostwhite"></div>
             <canvas id="canvas" v-bind:width="canvasWidth" v-bind:height="canvasHeight" style="border: 1px solid red;" v-on:onmousemove='onMouseMove(ev)'>你的浏览器不支持webGL</canvas>
         </el-main>
     </el-container>
@@ -226,6 +227,7 @@ $this->title = '美化图片';
                 canvasHeight: '768px',
 
                 canvas: $("#canvas")[0],
+                console: $("#console")[0],
                 webGL: null,
                 filterBase: null,
                 bLButtonDown: false,
@@ -238,17 +240,22 @@ $this->title = '美化图片';
         },
         mounted: function() {
             this.canvas = $("#canvas")[0];// document.getElementById("canvas");
+            this.console = $("#console")[0];
 
-            this.canvas.onmousedown = this.onMouseDown
-            this.canvas.onmouseup = this.onMouseUp
-            this.canvas.onmousemove = this.onMouseMove
-            this.canvas.touchstart = this.onTouchStart
-            this.canvas.onmouseup = this.onTouchEnd
-            this.canvas.onmousemove = this.onTouchMove
 
-            // this.canvas.addEventListener("touchstart", function (ev) { this.onTouchStart(ev, this.webGL, this.canvas);});
-            // this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
-            // this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
+            // key event - use DOM element as object
+            // this.canvas.addEventListener('keydown', doKeyDown, true);
+            this.canvas.focus();
+            // key event - use window as object
+            // window.addEventListener('keydown', doKeyDown, true);
+
+            // mouse event
+            this.canvas.addEventListener("mousedown", this.onMouseDown, false);
+            this.canvas.addEventListener('mousemove', this.onMouseMove, false);
+            this.canvas.addEventListener('mouseup',   this.onMouseUp, false);
+            this.canvas.addEventListener("touchstart", this.onTouchStart);
+            this.canvas.addEventListener("touchend", this.onTouchEnd);
+            this.canvas.addEventListener("touchmove", this.onTouchMove);
 
             this.webGL = getWebGLContext(this.canvas, true);
             // this.canvasWidth = this.innerWidth() + 'px';
@@ -270,10 +277,6 @@ $this->title = '美化图片';
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             },
-            // $(id) {
-            //     return typeof id == "string" ? document.getElementById(id) : id;
-            // },
-
 
             onBtnOpen() {
                 $("#browsefile").click();
@@ -364,9 +367,11 @@ $this->title = '美化图片';
                     x = (x - width) / width;
                     y = (height - y) / height;
 
-                    var div = $("console");
-                    div.innerHTML = "point(" + ev.clientX + "," + ev.clientY + ")<br/>gl(" +
+                    this.console.innerHTML = "point(" + ev.clientX + "," + ev.clientY + ")<br/>gl(" +
                         x.toFixed(2) + "," + y.toFixed(2) + ")";
+                }
+                else {
+                     this.console.innerHTML = "&emsp;x: " + ev.x + "<br/>&emsp;y: " + ev.y;
                 }
             },
             onTouchStart(ev) {
@@ -396,9 +401,8 @@ $this->title = '美化图片';
                     x = (x - width) / width;
                     y = (height - y) / height;
 
-                    var div = $("console");
-                    // div.innerHTML = "point(" + ev.touches[0].pageX + "," + ev.touches[0].pageY + ")<br/>gl(" +
-                    //     x.toFixed(2) + "," + y.toFixed(2) + ")";
+                    this.console.innerHTML = "point(" + ev.touches[0].pageX + "," + ev.touches[0].pageY + ")<br/>gl(" +
+                        x.toFixed(2) + "," + y.toFixed(2) + ")";
                 }
             }
         }
