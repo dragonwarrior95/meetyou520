@@ -6,7 +6,7 @@ $this->title = '美化图片';
 ?>
 
 <style>
-    #index-index {
+    #webgl-app {
         padding: 10px 10px 10px 290px;
         background-color: darkolivegreen;
         position: fixed;
@@ -49,7 +49,7 @@ $this->title = '美化图片';
 </style>
 
 
-<div id="index-index">
+<div id="webgl-app">
     <el-container class="index-main">
         <!--左侧菜单-->
 <!--        <el-aside style="width: 100%;">-->
@@ -217,7 +217,7 @@ $this->title = '美化图片';
 </script>
 <script>
     var vm = new Vue({
-        el: '#index-index',
+        el: '#webgl-app',
         data: function() {
             return {
                 visible: false,
@@ -235,6 +235,8 @@ $this->title = '美化图片';
         created: function() {
             if ($(".main-container").hasClass("nav-hide"))
                 $(".main-container").removeClass("nav-hide");
+        },
+        mounted: function() {
             this.canvas = $("#canvas")[0];// document.getElementById("canvas");
             this.webGL = getWebGLContext(this.canvas, true);
             // this.canvasWidth = this.innerWidth() + 'px';
@@ -242,6 +244,7 @@ $this->title = '美化图片';
             if (this.webGL == null) {
                 return;
             }
+
             this.filterBase = new JFilterBase(this.webGL);
             this.filterBase.initlize();
             this.filterBase.setFrameSize(this.canvas.clientWidth, this.canvas.clientHeight);
@@ -253,7 +256,7 @@ $this->title = '美化图片';
             this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
             this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
 
-            this.onLoadImage("/512.jpg");
+            this.onLoadImage("/1.jpg");
         },
         methods: {
             handleOpen(key, keyPath) {
