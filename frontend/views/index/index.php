@@ -172,7 +172,7 @@ $this->title = '美化图片';
 <!--        </el-aside>-->
         <!--中间内容-->
         <el-main>
-            <canvas id="canvas" v-bind:width="canvasWidth" v-bind:height="canvasHeight" style="border: 1px solid red;">你的浏览器不支持webGL</canvas>
+            <canvas id="canvas" v-bind:width="canvasWidth" v-bind:height="canvasHeight" style="border: 1px solid red;" v-on:onmousemove='onMouseMove(ev)'>你的浏览器不支持webGL</canvas>
         </el-main>
     </el-container>
 
@@ -235,6 +235,17 @@ $this->title = '美化图片';
         created: function() {
             if ($(".main-container").hasClass("nav-hide"))
                 $(".main-container").removeClass("nav-hide");
+
+            this.canvas.onmousedown = this.onMouseDown;
+            this.canvas.onmouseup = this.onMouseUp;
+            this.canvas.onmousemove = this.onMouseMove;
+            this.canvas.touchstart = this.onTouchStart;
+            this.canvas.onmouseup = this.onTouchEnd;
+            this.canvas.onmousemove = this.onTouchMove;
+
+            // this.canvas.addEventListener("touchstart", function (ev) { this.onTouchStart(ev, this.webGL, this.canvas);});
+            // this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
+            // this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
         },
         mounted: function() {
             this.canvas = $("#canvas")[0];// document.getElementById("canvas");
@@ -248,13 +259,6 @@ $this->title = '美化图片';
             this.filterBase = new JFilterBase(this.webGL);
             this.filterBase.initlize();
             this.filterBase.setFrameSize(this.canvas.clientWidth, this.canvas.clientHeight);
-            this.canvas.onmousedown = function (ev) { this.onMouseDown(ev, this.webGL, this.canvas);};
-            this.canvas.onmouseup = function (ev) { this.onMouseUp(ev, this.webGL, this.canvas);};
-            this.canvas.onmousemove = function (ev) { this.onMouseMove(ev, this.webGL, this.canvas);};
-
-            this.canvas.addEventListener("touchstart", function (ev) { this.onTouchStart(ev, this.webGL, this.canvas);});
-            this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
-            this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
 
             this.onLoadImage("/1.jpg");
         },
@@ -315,8 +319,11 @@ $this->title = '美化图片';
                 image.src = fileName;
             },
 
-            onMouseDown(ev, gl, canvas) {
-                bLButtonDown = true;
+            onMouseDown(ev) {
+                let gl = this.webGL;
+                let canvas = this.canvas;
+
+                this.bLButtonDown = true;
 
                 var x = ev.x - canvas.offsetLeft;
                 var y = ev.y - canvas.offsetTop;
@@ -328,8 +335,11 @@ $this->title = '美化图片';
                 x = (x - width) / width;
                 y = (height - y) / height;
             },
-            onMouseUp(ev, gl, canvas) {
-                bLButtonDown = false;
+            onMouseUp(ev) {
+                let gl = this.webGL;
+                let canvas = this.canvas;
+
+                this.bLButtonDown = false;
 
                 var x = ev.x - canvas.offsetLeft;
                 var y = ev.y - canvas.offsetTop;
@@ -338,8 +348,11 @@ $this->title = '美化图片';
                 var width = canvas.width / 2;
                 var height= canvas.height/2;
             },
-             onMouseMove(ev, gl, canvas) {
-                if (bLButtonDown === true) {
+             onMouseMove(ev) {
+                 let gl = this.webGL;
+                 let canvas = this.canvas;
+
+                 if (this.bLButtonDown === true) {
                     var x = ev.x - canvas.offsetLeft;
                     var y = ev.y - canvas.offsetTop;
                     var rect = ev.target.getBoundingClientRect();
@@ -355,14 +368,23 @@ $this->title = '美化图片';
                         x.toFixed(2) + "," + y.toFixed(2) + ")";
                 }
             },
-            onTouchStart(ev, gl, canvas) {
-                bLButtonDown = true;
+            onTouchStart(ev) {
+                let gl = this.webGL;
+                let canvas = this.canvas;
+
+                this.bLButtonDown = true;
             },
-            onTouchMove(ev, gl, canvas) {
-                bLButtonDown = false;
+            onTouchEnd(ev) {
+                let gl = this.webGL;
+                let canvas = this.canvas;
+
+                this.bLButtonDown = false;
             },
-            onTouchMove(ev, gl, canvas) {
-                if (bLButtonDown === true) {
+            onTouchMove(ev) {
+                let gl = this.webGL;
+                let canvas = this.canvas;
+
+                if (this.bLButtonDown === true) {
                     var x = ev.x - canvas.offsetLeft;
                     var y = ev.y - canvas.offsetTop;
                     var rect = ev.target.getBoundingClientRect();
