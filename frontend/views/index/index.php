@@ -235,20 +235,21 @@ $this->title = '美化图片';
         created: function() {
             if ($(".main-container").hasClass("nav-hide"))
                 $(".main-container").removeClass("nav-hide");
+        },
+        mounted: function() {
+            this.canvas = $("#canvas")[0];// document.getElementById("canvas");
 
-            this.canvas.onmousedown = this.onMouseDown;
-            this.canvas.onmouseup = this.onMouseUp;
-            this.canvas.onmousemove = this.onMouseMove;
-            this.canvas.touchstart = this.onTouchStart;
-            this.canvas.onmouseup = this.onTouchEnd;
-            this.canvas.onmousemove = this.onTouchMove;
+            this.canvas.onmousedown = this.onMouseDown
+            this.canvas.onmouseup = this.onMouseUp
+            this.canvas.onmousemove = this.onMouseMove
+            this.canvas.touchstart = this.onTouchStart
+            this.canvas.onmouseup = this.onTouchEnd
+            this.canvas.onmousemove = this.onTouchMove
 
             // this.canvas.addEventListener("touchstart", function (ev) { this.onTouchStart(ev, this.webGL, this.canvas);});
             // this.canvas.addEventListener("touchend", function (ev) { this.onTouchEnd(ev, this.webGL, this.canvas);});
             // this.canvas.addEventListener("touchmove", function (ev) { this.onTouchMove(ev, this.webGL, this.canvas);});
-        },
-        mounted: function() {
-            this.canvas = $("#canvas")[0];// document.getElementById("canvas");
+
             this.webGL = getWebGLContext(this.canvas, true);
             // this.canvasWidth = this.innerWidth() + 'px';
             // this.canvasHeight = this.innerHeight() + 'px';
@@ -396,8 +397,8 @@ $this->title = '美化图片';
                     y = (height - y) / height;
 
                     var div = $("console");
-                    div.innerHTML = "point(" + ev.touches[0].pageX + "," + ev.touches[0].pageY + ")<br/>gl(" +
-                        x.toFixed(2) + "," + y.toFixed(2) + ")";
+                    // div.innerHTML = "point(" + ev.touches[0].pageX + "," + ev.touches[0].pageY + ")<br/>gl(" +
+                    //     x.toFixed(2) + "," + y.toFixed(2) + ")";
                 }
             }
         }
