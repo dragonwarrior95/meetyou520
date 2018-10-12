@@ -40,7 +40,20 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="main-container /*nav-collapse nav-hide*/">
+<div id="app" class="main-container /*nav-collapse nav-hide*/">
+<script>
+    var vm = new Vue({
+        el: '#media-index',
+        data: function() {
+            return {
+            }
+        },
+        created: function() {
+            if (!$(".main-container").hasClass("nav-hide"))
+                $(".main-container").addClass("nav-hide");
+        }
+    });
+</script>
 <div class="wrap">
     <?php
     NavBar::begin([

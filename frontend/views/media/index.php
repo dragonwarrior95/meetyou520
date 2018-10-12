@@ -106,7 +106,6 @@ $this->title = '媒体影音';
             }
         },
         created: function() {
-            $(".main-container").addClass("nav-hide");
             this.value = 'http://api.baiyug.cn/vip/index.php?url=';
             this.video_url = 'https://www.iqiyi.com/v_19rqzez984.html#curid=1301876200_762c06344bc9d2c37ae896897b67bc58';
         },
