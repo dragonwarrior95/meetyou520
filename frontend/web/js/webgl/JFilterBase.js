@@ -34,6 +34,12 @@ class JFilterBase {
         this.m_vshader = null;
         this.m_fshader = null;
     }
+    init() {
+        this.m_Scale = 1.0;
+        this.m_Rotate = 0.0;
+        this.m_translateX = 0.0;
+        this.m_translateY = 0.0;
+    }
     setRotate(rotate) {
         this.m_Rotate = rotate;
         this.update();
@@ -49,8 +55,8 @@ class JFilterBase {
         this.update();
     }
     setTranslate(x, y) {
-        this.m_translateX += x;
-        this.m_translateY += y;
+        this.m_translateX += x/this.m_Scale;
+        this.m_translateY += y/this.m_Scale;
     }
     setFrameSize(clientWidth, clientHeight) {
         this.m_frameWidth = clientWidth;

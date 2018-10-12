@@ -323,8 +323,11 @@ $this->title = '美化图片';
                 var self = this;
                 image.onload = function () {
                     // setAutoShow(gl, image.width, image.height);// 图片加载为设置自适应
-                    self.glTexture = self.filterBase.loadTexture(image);
-                    self.filterBase.drawScene();
+                    if (self.filterBase) {
+                        self.filterBase.init();
+                        self.glTexture = self.filterBase.loadTexture(image);
+                        self.filterBase.drawScene();
+                    }
                 };
                 image.src = fileName;
             },
