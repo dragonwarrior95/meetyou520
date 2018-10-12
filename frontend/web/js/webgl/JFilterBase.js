@@ -48,7 +48,7 @@ class JFilterBase {
         this.m_Scale = scale/100.0;
         this.update();
     }
-    seTranslate(x, y) {
+    setTranslate(x, y) {
         this.m_translateX += x;
         this.m_translateY += y;
     }

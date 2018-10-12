@@ -228,6 +228,9 @@ $this->title = '美化图片';
                 canvasWidth: '800px',
                 canvasHeight: '600px',
 
+                startX: '0',
+                stratY: '0',
+
                 canvas: $("#canvas")[0],
                 console: $("#console")[0],
                 webGL: null,
@@ -332,43 +335,30 @@ $this->title = '美化图片';
 
                 this.bLButtonDown = true;
 
-                var x = ev.x - canvas.offsetLeft;
-                var y = ev.y - canvas.offsetTop;
-                var rect = ev.target.getBoundingClientRect();
-
-                var width = canvas.width / 2;
-                var height= canvas.height/2;
-
-                x = (x - width) / width;
-                y = (height - y) / height;
+                this.startX = ev.x;
+                this.startY = ev.y;
             },
             onMouseUp(ev) {
-                let gl = this.webGL;
-                let canvas = this.canvas;
+                this.startX = 0;
+                this.startY = 0;
 
                 this.bLButtonDown = false;
 
-                var x = ev.x - canvas.offsetLeft;
-                var y = ev.y - canvas.offsetTop;
-                var rect = ev.target.getBoundingClientRect();
-
-                var width = canvas.width / 2;
-                var height= canvas.height/2;
             },
              onMouseMove(ev) {
                  let gl = this.webGL;
                  let canvas = this.canvas;
 
                  if (this.bLButtonDown === true) {
-                    var x = ev.x - canvas.offsetLeft;
-                    var y = ev.y - canvas.offsetTop;
-                    var rect = ev.target.getBoundingClientRect();
+                    var x = ev.x - this.startX;
+                    var y = ev.y - this.startY;
 
-                    var width = canvas.width / 2;
-                    var height= canvas.height/2;
-
-                    x = (x - width) / width;
-                    y = (height - y) / height;
+                    if (this.filterBase) {
+                        this.filterBase.setTranslate(x, -y);
+                        this.filterBase.update();
+                    }
+                    this.startX = ev.x;
+                    this.startY = ev.y;
 
                     this.console.innerHTML = "point(" + ev.clientX + "," + ev.clientY + ")<br/>gl(" +
                         x.toFixed(2) + "," + y.toFixed(2) + ")";
