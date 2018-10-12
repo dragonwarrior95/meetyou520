@@ -38,6 +38,12 @@ class JFilterBase {
         this.m_Rotate = rotate;
         this.update();
     }
+    scale(delt) {
+        if (delt>0)
+            this.m_Scale += 0.05;
+        else
+            this.m_Scale -= 0.05;
+    }
     setScale(scale) {
         this.m_Scale = scale/100.0;
         this.update();
@@ -47,7 +53,7 @@ class JFilterBase {
         this.m_translateY += y;
     }
     setFrameSize(clientWidth, clientHeight) {
-        this.m_frameWidth = clientHeight;
+        this.m_frameWidth = clientWidth;
         this.m_frameHeight = clientHeight;
     }
     initlize() {
@@ -227,7 +233,7 @@ class JFilterBase {
 
     // 更新参数
     update() {
-        this.draw();
+        this.drawScene();
     }
 
     getShader() {
@@ -428,7 +434,7 @@ class JFilterBase {
         }
     }
 
-    draw()
+    drawScene()
     {
         // filterBase.filterToScreenSample(Projection.multiply(TRSMat), vertexs, texcoords, width, height);
         if (this.m_textureId && this.m_webGL.program)

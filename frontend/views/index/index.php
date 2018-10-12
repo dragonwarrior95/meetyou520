@@ -70,103 +70,105 @@ $this->title = '美化图片';
             </div>
         </div>
         <div class="nav-left1">
-<!--            <el-menu style="border: none;"-->
-<!--                        default-active="2"-->
-<!--                        class="el-menu-vertical-demo"-->
-<!--                        @open="handleOpen"-->
-<!--                        @close="handleClose"-->
-<!--                        background-color="#273238"-->
-<!--                        text-color="#fff"-->
-<!--                        active-text-color="#ffd04b">-->
-<!--                    <el-submenu index="1">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-location"></i>-->
-<!--                            <span>导航一</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item-group>-->
-<!--                            <template slot="title">分组一</template>-->
-<!--                            <el-menu-item index="1-1">选项1</el-menu-item>-->
-<!--                            <el-menu-item index="1-2">选项2</el-menu-item>-->
-<!--                        </el-menu-item-group>-->
-<!--                        <el-menu-item-group title="分组2">-->
-<!--                            <el-menu-item index="1-3">选项3</el-menu-item>-->
-<!--                        </el-menu-item-group>-->
-<!--                        <el-submenu index="1-4">-->
-<!--                            <template slot="title">选项4</template>-->
-<!--                            <el-menu-item index="1-4-1">选项1</el-menu-item>-->
-<!--                        </el-submenu>-->
-<!--                    </el-submenu>-->
-<!--                    <el-menu-item index="2">-->
-<!--                        <i class="el-icon-menu"></i>-->
-<!--                        <span slot="title">导航二</span>-->
-<!--                    </el-menu-item>-->
-<!--                    <el-menu-item index="3" disabled>-->
-<!--                        <i class="el-icon-document"></i>-->
-<!--                        <span slot="title">导航三</span>-->
-<!--                    </el-menu-item>-->
-<!--                    <el-menu-item index="4">-->
-<!--                        <i class="el-icon-setting"></i>-->
-<!--                        <span slot="title">导航四</span>-->
-<!--                    </el-menu-item>-->
-<!--                    <el-submenu index="6">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-location"></i>-->
-<!--                            <span>导航六</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="6-1">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航六</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="6-2">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航7</span>-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu>-->
-<!--                    <el-submenu index="5">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-location"></i>-->
-<!--                            <span>导航五</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="5-1">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航六</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="5-2">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航5</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="5-3">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航5</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="5-4">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航5</span>-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu>-->
-<!--                    <el-submenu index="7">-->
-<!--                        <template slot="title">-->
-<!--                            <i class="el-icon-location"></i>-->
-<!--                            <span>导航五</span>-->
-<!--                        </template>-->
-<!--                        <el-menu-item index="7-1">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航六</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="7-2">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航5</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="7-3">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航5</span>-->
-<!--                        </el-menu-item>-->
-<!--                        <el-menu-item index="7-4">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航5</span>-->
-<!--                        </el-menu-item>-->
-<!--                    </el-submenu>-->
-<!--                </el-menu>-->
+            <div>
+                <!--            <el-menu style="border: none;"-->
+                <!--                        default-active="2"-->
+                <!--                        class="el-menu-vertical-demo"-->
+                <!--                        @open="handleOpen"-->
+                <!--                        @close="handleClose"-->
+                <!--                        background-color="#273238"-->
+                <!--                        text-color="#fff"-->
+                <!--                        active-text-color="#ffd04b">-->
+                <!--                    <el-submenu index="1">-->
+                <!--                        <template slot="title">-->
+                <!--                            <i class="el-icon-location"></i>-->
+                <!--                            <span>导航一</span>-->
+                <!--                        </template>-->
+                <!--                        <el-menu-item-group>-->
+                <!--                            <template slot="title">分组一</template>-->
+                <!--                            <el-menu-item index="1-1">选项1</el-menu-item>-->
+                <!--                            <el-menu-item index="1-2">选项2</el-menu-item>-->
+                <!--                        </el-menu-item-group>-->
+                <!--                        <el-menu-item-group title="分组2">-->
+                <!--                            <el-menu-item index="1-3">选项3</el-menu-item>-->
+                <!--                        </el-menu-item-group>-->
+                <!--                        <el-submenu index="1-4">-->
+                <!--                            <template slot="title">选项4</template>-->
+                <!--                            <el-menu-item index="1-4-1">选项1</el-menu-item>-->
+                <!--                        </el-submenu>-->
+                <!--                    </el-submenu>-->
+                <!--                    <el-menu-item index="2">-->
+                <!--                        <i class="el-icon-menu"></i>-->
+                <!--                        <span slot="title">导航二</span>-->
+                <!--                    </el-menu-item>-->
+                <!--                    <el-menu-item index="3" disabled>-->
+                <!--                        <i class="el-icon-document"></i>-->
+                <!--                        <span slot="title">导航三</span>-->
+                <!--                    </el-menu-item>-->
+                <!--                    <el-menu-item index="4">-->
+                <!--                        <i class="el-icon-setting"></i>-->
+                <!--                        <span slot="title">导航四</span>-->
+                <!--                    </el-menu-item>-->
+                <!--                    <el-submenu index="6">-->
+                <!--                        <template slot="title">-->
+                <!--                            <i class="el-icon-location"></i>-->
+                <!--                            <span>导航六</span>-->
+                <!--                        </template>-->
+                <!--                        <el-menu-item index="6-1">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航六</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="6-2">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航7</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                    </el-submenu>-->
+                <!--                    <el-submenu index="5">-->
+                <!--                        <template slot="title">-->
+                <!--                            <i class="el-icon-location"></i>-->
+                <!--                            <span>导航五</span>-->
+                <!--                        </template>-->
+                <!--                        <el-menu-item index="5-1">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航六</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="5-2">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航5</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="5-3">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航5</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="5-4">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航5</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                    </el-submenu>-->
+                <!--                    <el-submenu index="7">-->
+                <!--                        <template slot="title">-->
+                <!--                            <i class="el-icon-location"></i>-->
+                <!--                            <span>导航五</span>-->
+                <!--                        </template>-->
+                <!--                        <el-menu-item index="7-1">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航六</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="7-2">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航5</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="7-3">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航5</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                        <el-menu-item index="7-4">-->
+                <!--                            <i class="el-icon-setting"></i>-->
+                <!--                            <span slot="title">导航5</span>-->
+                <!--                        </el-menu-item>-->
+                <!--                    </el-submenu>-->
+                <!--                </el-menu>-->
+            </div>
         </div>
 <!--            </el-col>-->
 <!--        </el-aside>-->
@@ -223,8 +225,8 @@ $this->title = '美化图片';
             return {
                 visible: false,
 
-                canvasWidth: '1024',
-                canvasHeight: '768px',
+                canvasWidth: '800px',
+                canvasHeight: '600px',
 
                 canvas: $("#canvas")[0],
                 console: $("#console")[0],
@@ -253,6 +255,7 @@ $this->title = '美化图片';
             this.canvas.addEventListener("mousedown", this.onMouseDown, false);
             this.canvas.addEventListener('mousemove', this.onMouseMove, false);
             this.canvas.addEventListener('mouseup',   this.onMouseUp, false);
+            this.canvas.addEventListener('mousewheel',this.onMouseWheel, false);
             this.canvas.addEventListener("touchstart", this.onTouchStart);
             this.canvas.addEventListener("touchend", this.onTouchEnd);
             this.canvas.addEventListener("touchmove", this.onTouchMove);
@@ -318,7 +321,7 @@ $this->title = '美化图片';
                 image.onload = function () {
                     // setAutoShow(gl, image.width, image.height);// 图片加载为设置自适应
                     self.glTexture = self.filterBase.loadTexture(image);
-                    self.filterBase.draw();
+                    self.filterBase.drawScene();
                 };
                 image.src = fileName;
             },
@@ -372,6 +375,12 @@ $this->title = '美化图片';
                 }
                 else {
                      this.console.innerHTML = "&emsp;x: " + ev.x + "<br/>&emsp;y: " + ev.y;
+                }
+            },
+            onMouseWheel(ev) {
+                if (this.filterBase) {
+                    this.filterBase.scale(ev.wheelDelta);
+                    this.filterBase.update();
                 }
             },
             onTouchStart(ev) {
