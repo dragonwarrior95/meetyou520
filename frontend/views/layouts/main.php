@@ -27,7 +27,7 @@ AppAsset::register($this);
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-    <script src="/js/webgl/jquery-3.2.1.js"></script>
+    <script src="/frontend/web/js/webgl/jquery-3.2.1.js"></script>
 
 
     <!-- 引入样式 -->
