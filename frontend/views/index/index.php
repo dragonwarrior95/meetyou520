@@ -184,18 +184,18 @@ $this->title = '美化图片';
 
 
 
-<script src="/js/webgl/webgl-debug.js"></script>
-<script src="/js/webgl/webgl-utils.js"></script>
-<script src="/js/webgl/cuon-utils.js"></script>
-<script src="/js/webgl/cuon-matrix.js"></script><!--矩阵变换库-->
-<script src="/js/webgl/jquery-3.2.1.js"></script>
-<!--<script src="/js/WebGL.js"></script>-->
-<!--<script src="/js/WebGLTransfor.js"></script>-->
-<!--<script src="/js/WebGLColor.js"></script>-->
-<!--<script src="/js/WebGLImage.js"></script>-->
-<!--<script src="/js/webgl/FilterBase.js"></script>-->
-<script src="/js/webgl/JFilterBase.js"></script>
-<!--<script src="/js/test.js"></script>-->
+<script src="/frontend/web/js/webgl/webgl-debug.js"></script>
+<script src="/frontend/web/js/webgl/webgl-utils.js"></script>
+<script src="/frontend/web/js/webgl/cuon-utils.js"></script>
+<script src="/frontend/web/js/webgl/cuon-matrix.js"></script><!--矩阵变换库-->
+<script src="/frontend/web/js/webgl/jquery-3.2.1.js"></script>
+<!--<script src="/frontend/web/js/WebGL.js"></script>-->
+<!--<script src="/frontend/web/js/WebGLTransfor.js"></script>-->
+<!--<script src="/frontend/web/js/WebGLColor.js"></script>-->
+<!--<script src="/frontend/web/js/WebGLImage.js"></script>-->
+<!--<script src="/frontend/web/js/webgl/FilterBase.js"></script>-->
+<script src="/frontend/web/js/webgl/JFilterBase.js"></script>
+<!--<script src="/frontend/web/js/test.js"></script>-->
 
 <script id="vs" type="x-shader/x-vertex">
     attribute vec4 a_Position;
