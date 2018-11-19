@@ -97,9 +97,11 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <div style="text-align: center">
+            <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
+            <a href="http://www.miitbeian.gov.cn/" target="_blank"><i style="display: inline-block;width: 14px;height: 16px;margin-right: 6px;background: url(image/icon-police.png?v=md5) 0 0 no-repeat;vertical-align: middle;margin-top: -4px;"></i>闽ICP备18026158号</a>
+            <p class="pull-right"><?= Yii::powered() ?></p>
+        </div>
     </div>
 </footer>
 </div>
