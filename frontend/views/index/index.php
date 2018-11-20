@@ -48,12 +48,99 @@ $this->title = '美化图片';
     /*}*/
 </style>
 
+<style>
+    .viewport {
+        /* cursor:-webkit-grab; */
+        cursor: -moz-grab;
+    }
 
-<div id="webgl-app">
+    .viewport>canvas {
+        width: 100%;
+        height: 100%;
+        -ms-interpolation-mode: nearest-neighbor;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: pixelated;
+        image-rendering: optimizeSpeed
+    }
+
+    .viewport .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        cursor: default;
+        opacity: 0;
+        pointer-events: none;
+        display: none;
+        transition: opacity .2s ease-out;
+        z-index: 1;
+        overflow: hidden
+    }
+
+    .toolbar.left {
+        left: 0;
+    }
+    .toolbar {
+        position: absolute;
+        width: 50px;
+        top: 0;
+        bottom: 0;
+        font-size: 13px;
+        cursor: default;
+        z-index: 3;
+        pointer-events: all;
+        background-clip: padding-box;
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+</style>
+
+
+<div id="webgl-app" style="border: 1px solid red;">
+    <div class="viewport">
+        <div id="console" style="height: 60px; border: 1px solid red; background-color: ghostwhite"></div>
+        <canvas id="canvas" v-bind:width="canvasWidth" v-bind:height="canvasHeight" style="border: 1px solid red;" v-on:onmousemove='onMouseMove(ev)'>你的浏览器不支持webGL</canvas>
+    </div>
+    <div class="toolbars">
+        <div class="toolbar left" style="pointer-events: all; opacity: 1;">
+            <i class="icon active" data-name="looks" style="touch-action: manipulation; transform: translate(0px, 47px);">
+                <span class="icon-inner"><span>è</span></span>
+            </i>
+            <i class="icon" data-name="overlays" style="touch-action: manipulation; transform: translate(0px, 95px);">
+                <span class="icon-inner"><span>j</span></span>
+            </i><i class="icon" data-name="retouch" style="touch-action: manipulation; transform: translate(0px, 143px);">
+                <span class="icon-inner"><span>1</span></span>
+            </i>
+            <i class="icon" data-name="crop" style="touch-action: manipulation; transform: translate(0px, 191px);">
+                <span class="icon-inner"><span>Ç</span></span>
+            </i>
+            <i class="icon" data-name="layers" style="touch-action: manipulation; transform: translate(0px, 239px);">
+                <span class="icon-inner"><span>ċ</span></span>
+            </i>
+        </div>
+        <div class="toolbar right" style="pointer-events: all; opacity: 1;">
+            <i class="icon" data-name="adjustments" style="touch-action: manipulation; transform: translate(0px, 68px);">
+                <span class="icon-inner"><span>í</span></span>
+            </i>
+            <i class="icon" data-name="local_adjustments" style="touch-action: manipulation; transform: translate(0px, 118px);">
+                <span class="icon-inner"><span>Þ</span></span>
+            </i>
+            <i class="icon" data-name="history" style="touch-action: manipulation; transform: translate(0px, 168px);">
+                <span class="icon-inner"><span>
+                        <svg viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+                                <g transform="translate(16.000000, 16.500000) scale(-1, 1) translate(-16.000000, -16.500000) translate(5.000000, 4.000000)" stroke="currentColor"><g transform="translate(6.000000, 10.000000)" stroke-linejoin="round" stroke-width="2"><path d="M0,4 L5,4"></path><path d="M5,4 L11,0"></path></g>
+                                    <g transform="translate(11.000000, 12.500000) scale(-1, 1) rotate(-90.000000) translate(-11.000000, -12.500000) translate(-1.000000, 2.000000)"><path d="M10.5,0.5 C4.9771525,0.5 0.5,4.9771525 0.5,10.5 C0.5,16.0228475 4.9771525,20.5 10.5,20.5 C16.0228475,20.5 20.5,16.0228475 20.5,10.5" stroke-width="2"></path><polygon fill="currentColor" stroke-linejoin="round" points="17.2000003 10.5 23.8000002 10.5 20.5000002 5.5"></polygon></g></g></g></svg></span></span>
+            </i>
+            <i class="icon" data-name="undo" style="touch-action: manipulation; transform: translate(0px, 218px);">
+                <span class="icon-inner"><span>J</span></span>
+            </i>
+        </div>
+    </div>
     <el-container class="index-main">
-        <!--左侧菜单-->
-<!--        <el-aside style="width: 100%;">-->
-<!--            <el-col>-->
         <div class="nav-left">
             <div class="LeftPanel">
                 <p><input type="file" id="browsefile" style="display: none;" v-on:change="onEditChange(this)"></p>
@@ -70,115 +157,8 @@ $this->title = '美化图片';
             </div>
         </div>
         <div class="nav-left1">
-            <div>
-                <!--            <el-menu style="border: none;"-->
-                <!--                        default-active="2"-->
-                <!--                        class="el-menu-vertical-demo"-->
-                <!--                        @open="handleOpen"-->
-                <!--                        @close="handleClose"-->
-                <!--                        background-color="#273238"-->
-                <!--                        text-color="#fff"-->
-                <!--                        active-text-color="#ffd04b">-->
-                <!--                    <el-submenu index="1">-->
-                <!--                        <template slot="title">-->
-                <!--                            <i class="el-icon-location"></i>-->
-                <!--                            <span>导航一</span>-->
-                <!--                        </template>-->
-                <!--                        <el-menu-item-group>-->
-                <!--                            <template slot="title">分组一</template>-->
-                <!--                            <el-menu-item index="1-1">选项1</el-menu-item>-->
-                <!--                            <el-menu-item index="1-2">选项2</el-menu-item>-->
-                <!--                        </el-menu-item-group>-->
-                <!--                        <el-menu-item-group title="分组2">-->
-                <!--                            <el-menu-item index="1-3">选项3</el-menu-item>-->
-                <!--                        </el-menu-item-group>-->
-                <!--                        <el-submenu index="1-4">-->
-                <!--                            <template slot="title">选项4</template>-->
-                <!--                            <el-menu-item index="1-4-1">选项1</el-menu-item>-->
-                <!--                        </el-submenu>-->
-                <!--                    </el-submenu>-->
-                <!--                    <el-menu-item index="2">-->
-                <!--                        <i class="el-icon-menu"></i>-->
-                <!--                        <span slot="title">导航二</span>-->
-                <!--                    </el-menu-item>-->
-                <!--                    <el-menu-item index="3" disabled>-->
-                <!--                        <i class="el-icon-document"></i>-->
-                <!--                        <span slot="title">导航三</span>-->
-                <!--                    </el-menu-item>-->
-                <!--                    <el-menu-item index="4">-->
-                <!--                        <i class="el-icon-setting"></i>-->
-                <!--                        <span slot="title">导航四</span>-->
-                <!--                    </el-menu-item>-->
-                <!--                    <el-submenu index="6">-->
-                <!--                        <template slot="title">-->
-                <!--                            <i class="el-icon-location"></i>-->
-                <!--                            <span>导航六</span>-->
-                <!--                        </template>-->
-                <!--                        <el-menu-item index="6-1">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航六</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="6-2">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航7</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                    </el-submenu>-->
-                <!--                    <el-submenu index="5">-->
-                <!--                        <template slot="title">-->
-                <!--                            <i class="el-icon-location"></i>-->
-                <!--                            <span>导航五</span>-->
-                <!--                        </template>-->
-                <!--                        <el-menu-item index="5-1">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航六</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="5-2">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航5</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="5-3">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航5</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="5-4">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航5</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                    </el-submenu>-->
-                <!--                    <el-submenu index="7">-->
-                <!--                        <template slot="title">-->
-                <!--                            <i class="el-icon-location"></i>-->
-                <!--                            <span>导航五</span>-->
-                <!--                        </template>-->
-                <!--                        <el-menu-item index="7-1">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航六</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="7-2">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航5</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="7-3">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航5</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                        <el-menu-item index="7-4">-->
-                <!--                            <i class="el-icon-setting"></i>-->
-                <!--                            <span slot="title">导航5</span>-->
-                <!--                        </el-menu-item>-->
-                <!--                    </el-submenu>-->
-                <!--                </el-menu>-->
-            </div>
         </div>
-<!--            </el-col>-->
-<!--        </el-aside>-->
-        <!--中间内容-->
-        <el-main>
-            <div id="console" style="height: 60px; border: 1px solid red; background-color: ghostwhite"></div>
-            <canvas id="canvas" v-bind:width="canvasWidth" v-bind:height="canvasHeight" style="border: 1px solid red;" v-on:onmousemove='onMouseMove(ev)'>你的浏览器不支持webGL</canvas>
-        </el-main>
     </el-container>
-
 </div>
 
 
@@ -274,7 +254,7 @@ $this->title = '美化图片';
             this.filterBase.initlize();
             this.filterBase.setFrameSize(this.canvas.clientWidth, this.canvas.clientHeight);
 
-            this.onLoadImage("/1.jpg");
+            this.onLoadImage("/img/1.jpg");
         },
         methods: {
             handleOpen(key, keyPath) {

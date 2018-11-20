@@ -28,7 +28,7 @@
     /*----------------------------------------------------*/
     function main_slider(){
         if ( $('#main_slider').length ){
-            $("#main_slider").revolution({
+            $('#main_slider').revolution({
                 sliderType:"standard",
                 sliderLayout:"auto",
                 delay:5000,
