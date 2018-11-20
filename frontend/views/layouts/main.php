@@ -239,8 +239,8 @@ AppAsset::register($this);
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Your e-mail address here" aria-label="Your e-mail address here">
                                 <span class="input-group-btn">
-                                            <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
-                                        </span>
+                                    <button class="btn btn-secondary submit_btn" type="button">Subscribe</button>
+                                </span>
                             </div>
                         </aside>
                     </div>
@@ -249,25 +249,18 @@ AppAsset::register($this);
         </div>
         <div class="footer_copyright">
             <div class="container">
-                <div class="float-sm-left">
+                <div style="text-align: center">
                     <h5>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </script>
+<!--                        All rights reserved | This template is made with-->
+                        All rights reserved
+                        <a href="http://www.miitbeian.gov.cn/" target="_blank"><i style="display: inline-block;width: 14px;height: 16px;margin-right: 6px;background: url(image/icon-police.png?v=md5) 0 0 no-repeat;vertical-align: middle;margin-top: -4px;"></i>闽ICP备18026158号</a>
+
                     </h5>
-                </div>
-                <div class="float-sm-right">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
