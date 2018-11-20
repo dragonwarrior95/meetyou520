@@ -149,7 +149,7 @@ use yii\helpers\Html;
                     <li class="nav-item"><a class="nav-link" href="/index/index"><span>看图工具</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="media/index"><span>媒体影音</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="/site/about"><span>关于</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/site/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/site/contact">联系我们</a></li>
                     <li class="nav-item"><a class="nav-link" href="/site/login">登录</a></li>
                     <li class="nav-item"><a class="nav-link" href="/site/signup">注册</a></li>
 
