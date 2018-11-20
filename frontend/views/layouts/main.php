@@ -4,25 +4,20 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
-use common\widgets\Alert;
-
-AppAsset::register($this);
+//use frontend\assets\AppAsset;
+//
+//AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-<!--    <meta charset="utf-8">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Sierra</title>
 
     <!-- Icon css link -->
     <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -119,22 +114,16 @@ AppAsset::register($this);
     </style>
 
 
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <!-- 引入组件库 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <!-- import JavaScript -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-    <script src="js/webgl/jquery-3.2.1.js"></script>
-
-
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <script src="js/webgl/jquery-3.2.1.js"></script>
 
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -143,8 +132,8 @@ AppAsset::register($this);
 <body>
     <?php $this->beginBody() ?>
     <!-- setup our canvas element -->
-    <canvas id="canvas" style="position: fixed; width: 100%; height: 100%; z-index: -1">Canvas is not supported in your browser.</canvas>
-    <script src="js/index.js"></script>
+    <!--<canvas id="canvas" style="position: fixed; width: 100%; height: 100%; z-index: -1">Canvas is not supported in your browser.</canvas>-->
+    <!--<script src="js/index.js"></script>-->
     <!--================Header Menu Area =================-->
     <header class="main_menu_area">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -154,37 +143,37 @@ AppAsset::register($this);
                 <span></span>
                 <span></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="index.html">
-                            <sapn>Home</sapn>
-                        </a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="about-us.html"><span>About Us</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html"><span>Services</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="portfolio.html"><span>Portfolio</span></a></li>
-                    <li class="nav-item dropdown submenu">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Blog
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                            <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-                            <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="/site/index"><sapn>首页</sapn></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/index/index"><span>看图工具</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="media/index"><span>媒体影音</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/site/about"><span>关于</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/site/contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/site/login">登录</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/site/signup">注册</a></li>
+
+<!--                    <li class="nav-item dropdown submenu">-->
+<!--                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                            Blog-->
+<!--                        </a>-->
+<!--                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>-->
+<!--                            <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>-->
+<!--                            <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
                 </ul>
             </div>
         </nav>
     </header>
     <!--================End Header Menu Area =================-->
 
-    <div class="container">
+    <!--================Slider Area =================-->
+    <section class="main_slider_area">
         <?= $content ?>
-    </div>
+    </section>
+    <!--================End Slider Area =================-->
 
 
     <!--================Footer Area =================-->
