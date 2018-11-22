@@ -36,7 +36,7 @@ class AppAsset extends AssetBundle
         'css/responsive.css',
     ];
     public $js = [
-        'js/index.js',
+//        'js/index.js',
 
         'js/WebGL.js',
         'js/WebGLColor.js',

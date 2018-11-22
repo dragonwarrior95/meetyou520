@@ -42,7 +42,7 @@ AppAsset::register($this);
 <body>
     <?php $this->beginBody() ?>
     <!-- setup our canvas element -->
-    <canvas id="canvas" style="position: fixed; width: 100%; height: 100%; z-index: 999; pointer-events: none">Canvas is not supported in your browser.</canvas>
+<!--    <canvas id="canvas" style="position: fixed; width: 100%; height: 100%; z-index: 999; pointer-events: none">Canvas is not supported in your browser.</canvas>-->
 <!--    <script src="js/index.js"></script>-->
     <!--================Header Menu Area =================-->
     <header class="main_menu_area">
