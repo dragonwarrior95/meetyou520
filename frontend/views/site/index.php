@@ -27,7 +27,7 @@ $this->title = 'meetyou520.cn';
                                      @select="handleSelect"
                                      @keyup.enter.native="sqlSearch"
                                      @keyup.enter="sqlSearch">
-                        <el-button slot="append" type="primary" style="width: 100px; height: 40px;" icon="el-icon-search" @click="sqlSearch"></el-button>
+                        <el-button slot="append" type="primary" style="width: 100px; height: 40px;" icon="el-icon-search" @click="btnSearch">搜索</el-button>
                     </el-autocomplete>
                 </div>
             </div>
@@ -38,12 +38,12 @@ $this->title = 'meetyou520.cn';
     <!--================Feature Area =================-->
     <section class="feature_area">
         <div class="container">
-<!--            <div class="c_title">-->
+            <div class="c_title">
 <!--                <img src="img/icon/title-icon.png" alt="">-->
 <!--                <h6>Discover the features</h6>-->
 <!--                <h2>We are young but bold</h2>-->
-<!--            </div>-->
-<!--            <div class="row feature_inner">-->
+            </div>
+            <div class="row feature_inner">
 <!--                <div class="col-lg-4 col-sm-6">-->
 <!--                    <div class="feature_item">-->
 <!--                        <div class="f_icon">-->
@@ -74,7 +74,7 @@ $this->title = 'meetyou520.cn';
 <!--                        <a class="more_btn" href="#">Read More</a>-->
 <!--                    </div>-->
 <!--                </div>-->
-<!--            </div>-->
+            </div>
         </div>
     </section>
     <!--================End Feature Area =================-->
@@ -148,35 +148,10 @@ $this->title = 'meetyou520.cn';
                     this.sqlSearch();
                 }
             },
-            sqlSearch: function(){
+            btnSearch: function(){
                 var _this = this
-                if (this.sql == null || this.sql == '') {
-                    alert('查询语句不能为空');
-                }
-                $.ajax({
-                    type: 'post',
-                    dataType: 'json',
-                    url: '/api/debug/sql_search',
-                    data: {
-                        sql: _this.sql
-                    },
-                    success: function(res){
-                        if(res.status == 'success'){
-                            // _this.result = res.data;
-                            let Json = JSON.stringify(res.data);
-                            _this.result = _this.formatJson(Json);
 
-                            if (-1 === _this.restaurants.indexOf(_this.sql)) {
-                                let sql = _this.sql.substr(0, _this.sql.lastIndexOf(';'));
-                                _this.restaurants.push(sql);
-                                setCookie('search_sql', JSON.stringify(_this.restaurants))// 保存到cookie
-                            }
-                        }
-                        else {
-                            _this.result = res.msg;
-                        }
-                    }
-                });
+                // 查询语句
             },
             repeat: function(s, count) {
                 return new Array(count + 1).join(s);
