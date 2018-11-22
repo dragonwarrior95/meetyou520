@@ -566,8 +566,9 @@ i:before {
 ============================================================================================ */
 .feature_area {
   padding-top: 70px;
-  background: url(../img/feature_bg.jpg) no-repeat scroll center center;
-  background-size: cover;
+  background: #fff;
+  /*background: url(../img/feature_bg.jpg) no-repeat scroll center center;*/
+  /*background-size: cover;*/
 }
 
 .feature_item {

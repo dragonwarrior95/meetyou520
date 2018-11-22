@@ -86,7 +86,7 @@
             })
         }
     }
-    main_slider();
+    // main_slider();
   
     
     /*----------------------------------------------------*/
@@ -127,7 +127,7 @@
             })
         }
     }
-    testimoninals_carousel();
+    // testimoninals_carousel();
     
     /*----------------------------------------------------*/
     /*  Shap Slider
@@ -146,7 +146,7 @@
             })
         }
     }
-    shap_carousel();
+    // shap_carousel();
     
    
     /*----------------------------------------------------*/
@@ -173,7 +173,7 @@
 	    })
 	  }
 	}
-    progressBarConfig ();
+    // progressBarConfig ();
     
     $('.counter').counterUp({
         delay: 10,
@@ -197,7 +197,7 @@
             }); 
         }
     }
-    home_gallery();
+    // home_gallery();
     
     /*----------------------------------------------------*/
     /*  Portfolio js
@@ -223,7 +223,7 @@
         }
     }
     
-    portfolio_isotope();
+    // portfolio_isotope();
     
     
     $(document).ready(function() {

@@ -12,13 +12,16 @@ $this->title = 'meetyou520.cn';
     .border_green {
         border: 1px solid green;
     }
+    .box-card {
+        margin-bottom: 30px;
+    }
 </style>
 
 <div id="app" class="site-index">
     <!--================Slider Area =================-->
     <section class="main_slider_area">
-        <div class="rev_slider">
-            <div class="serach_banner" style="background-color: darkseagreen; opacity: 0.8; margin: 118px auto 30px auto;border-radius: 5px;overflow: hidden; width: 980px;height: 360px;">
+        <div id="main_slider" class="rev_slider">
+            <el-card class="serach_banner container box-card" style="background-color: darkseagreen; opacity: 0.8; margin: 118px auto 30px auto;border-radius: 5px;overflow: hidden; width: 980px;height: 360px;">
                 <div class="search_banner_main" style="width: 640px; height: 100px; border-radius: 5px;background: #000; opacity: 0.6;position: absolute; left: 0; right: 0; bottom: 65px; margin: auto; text-align: center;">
                     <el-autocomplete placeholder="百度一下你就知道~" style="position: absolute; border-radius: 5px;background-color: #fff; width: 600px; height: 40px; top: 40px;left: 0;right: 0;margin: auto;"
                                      v-model="sql" class="input-with-select"
@@ -30,56 +33,36 @@ $this->title = 'meetyou520.cn';
                         <el-button slot="append" type="primary" style="width: 100px; height: 40px;" icon="el-icon-search" @click="btnSearch">搜索</el-button>
                     </el-autocomplete>
                 </div>
-            </div>
+            </el-card>
+        </div>
+
+        <div class="container" style="opacity: 0.8;">
+<!--            <div>-->
+<!--                <span>常用功能</span>-->
+<!--                <el-button style="float: right; padding: 3px 0" type="text">更多</el-button>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                -->
+<!--            </div>-->
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>常用功能</span>
+                    <el-button style="float: right; padding: 3px 0" type="text">更多</el-button>
+                </div>
+                <div style="text-align: center;">
+                    <el-card v-for="item in cardType" class="box-card" style="margin: 0 20px 20px 20px;">
+                        <div slot="header" class="clearfix" style="height: 30px;">
+                            <span>{{item}}</span>
+                        </div>
+                        <div>
+                            具体类型
+                        </div>
+                    </el-card>
+                </div>
+            </el-card>
         </div>
     </section>
     <!--================End Slider Area =================-->
-
-    <!--================Feature Area =================-->
-    <section class="feature_area">
-        <div class="container">
-            <div class="c_title">
-<!--                <img src="img/icon/title-icon.png" alt="">-->
-<!--                <h6>Discover the features</h6>-->
-<!--                <h2>We are young but bold</h2>-->
-            </div>
-            <div class="row feature_inner">
-<!--                <div class="col-lg-4 col-sm-6">-->
-<!--                    <div class="feature_item">-->
-<!--                        <div class="f_icon">-->
-<!--                            <img src="img/icon/f-icon-1.png" alt="">-->
-<!--                        </div>-->
-<!--                        <h4>Brand Identity</h4>-->
-<!--                        <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. </p>-->
-<!--                        <a class="more_btn" href="#">Read More</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-4 col-sm-6">-->
-<!--                    <div class="feature_item">-->
-<!--                        <div class="f_icon">-->
-<!--                            <img src="img/icon/f-icon-2.png" alt="">-->
-<!--                        </div>-->
-<!--                        <h4>Online Marketing</h4>-->
-<!--                        <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. </p>-->
-<!--                        <a class="more_btn" href="#">Read More</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-lg-4 col-sm-6">-->
-<!--                    <div class="feature_item">-->
-<!--                        <div class="f_icon">-->
-<!--                            <img src="img/icon/f-icon-3.png" alt="">-->
-<!--                        </div>-->
-<!--                        <h4>Social Media</h4>-->
-<!--                        <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. </p>-->
-<!--                        <a class="more_btn" href="#">Read More</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-            </div>
-        </div>
-    </section>
-    <!--================End Feature Area =================-->
-
-
 </div>
 <script>
     function setCookie(c_name, value, expiredays){
@@ -115,6 +98,8 @@ $this->title = 'meetyou520.cn';
                 sql: '',
                 result: '',
                 restaurants: [], // 下拉列表的数据
+
+                cardType: ['视频','直播','购物','常用工具'],
             }
         },
         created: function() {
