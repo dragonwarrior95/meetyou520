@@ -58,3 +58,14 @@ frontend
 vendor/                  contains dependent 3rd-party packages
 environments/            contains environment-based overrides
 ```
+
+Nginx重新加载配置：nginx -s reload
+nginx查看配置是否正确： nginx -t
+nginx启动： service nginx start 或者 sudo nginx
+
+网站重启：
+1、service nginx start
+2、service mysqld start
+3、service php-fpm start
+网站启动有误查看日志：/var/log/nginx/error.log access.log
+百度推广接入账号：Bdmeetyou520
