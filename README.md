@@ -69,3 +69,8 @@ nginx启动： service nginx start 或者 sudo nginx
 3、service php-fpm start
 网站启动有误查看日志：/var/log/nginx/error.log access.log
 百度推广接入账号：Bdmeetyou520
+
+
+执行代码：
+php init
+composer update
