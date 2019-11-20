@@ -74,3 +74,14 @@ nginx启动： service nginx start 或者 sudo nginx
 执行代码：
 php init
 composer update
+
+打开控制台终端，执行 init 命令并选择 dev 作为环境。
+/path/to/php-bin/php /path/to/yii-application/init
+如果使用脚本自动化，可以在非交互模式下执行 init 。
+
+/path/to/php-bin/php /path/to/yii-application/init --env=Production --overwrite=All
+创建一个新的数据库，并相应地调整 common/config/main-local.php 中的 components['db'] 配置。
+
+打开控制台终端，执行迁移命令 /path/to/php-bin/php /path/to/yii-application/yii migrate.
+
+参考：https://github.com/yiisoft/yii2-app-advanced/blob/master/docs/guide-zh-CN/start-installation.md
