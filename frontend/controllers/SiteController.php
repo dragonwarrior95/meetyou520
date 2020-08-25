@@ -72,6 +72,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = false;
+        return $this->render('@frontend/views/vue2-pc/index.html');
         return $this->render('index');
     }
 
